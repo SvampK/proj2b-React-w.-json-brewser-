@@ -12,16 +12,46 @@ class TodoList extends React.Component {
         this.addItem = this.addItem.bind(this);
         this.removeItem = this.removeItem.bind(this);
         this.updateItem = this.updateItem.bind(this);
+        this.getTodos = this.getTodos.bind(this);
+    }
+    componentDidMount() {
+        this.getTodos();
+    }
+
+    getTodos() {
+        fetch('http://localhost:3001/todos')
+            .then(res => res.json())
+            .then(todos => this.setState({ todos: todos }))
+            .then(console.log(this.state.todos));
+                
     }
     addItem(newItem) {
-        this.setState({ todos: [...this.state.todos, newItem] })
-        console.log(this.state.todos);
+        fetch(`http://localhost:3001/todos`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+           body :JSON.stringify(newItem)
+        })
+        .then(() => this.getTodos())
+        //this.setState({ todos: [...this.state.todos, newItem] })
+        //return response.json();
+        //console.log(this.state.todos);
     }
     removeItem(id) {
+        fetch(`http://localhost:3001/todos/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(() => this.getTodos());
+      }
+    /* removeItem(id) {
         this.setState({
             todos: this.state.todos.filter(t => t.id !== id)
         })
-    }
+    } */
     updateItem(id, updateItem) {
         const updateTodos = this.state.todos.map(todo => {
             if (todo.id === id) {
@@ -30,7 +60,7 @@ class TodoList extends React.Component {
             }
             return todo;
         });
-        this.setState({todos: updateTodos})
+        this.setState({ todos: updateTodos })
     }
     render() {
         const todos = this.state.todos.map(todoItem => {
