@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
-
+import './TodoItem.css'
 class TodoItem extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             isEditing: false,
-            item: this.props.item
+            item: this.props.item,
+            isDone: this.props.isDone
         }
         this.handleRemove = this.handleRemove.bind(this);
         this.toggleEdit = this.toggleEdit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleDone = this.handleDone.bind(this);
     }
     handleRemove() {
         this.props.remove(this.props.id);
     }
     toggleEdit() {
-        //this.props.edit(this.props.id)
+        
         this.setState({ isEditing: !this.state.isEditing })
     }
     handleChange(e) {
@@ -28,6 +30,10 @@ class TodoItem extends Component {
         this.props.update(this.props.id, this.state.item)
         this.setState({isEditing: false})
     }
+    handleDone(e) {
+        this.props.updateDone(this.props.id, this.state.isDone)
+        this.setState({isDone:!this.state.isDone})
+    } 
     render() {
         let result;
         if (this.state.isEditing) {
@@ -44,7 +50,10 @@ class TodoItem extends Component {
                 <div>
                     <button onClick={this.toggleEdit}>Edit</button>
                     <button onClick={this.handleRemove}>X</button>
-                    <li>{this.props.item}</li>
+                    <li className={this.props.isDone? 'line' :null}
+                        onClick= {this.handleDone}>
+                        {this.props.item}
+                        </li>
                 </div>
             )
 

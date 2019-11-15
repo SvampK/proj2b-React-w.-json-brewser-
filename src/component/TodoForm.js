@@ -10,7 +10,7 @@ class TodoForm extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        this.props.addItem({ ...this.state, id: uuid.v4() });
+        this.props.addItem({ ...this.state, id: uuid.v4(), isDone: false });
         console.log(this.state)
         this.setState({ item: '' })
     }

@@ -13,6 +13,7 @@ class TodoList extends React.Component {
         this.removeItem = this.removeItem.bind(this);
         this.updateItem = this.updateItem.bind(this);
         this.getTodos = this.getTodos.bind(this);
+        this.updateDone = this.updateDone.bind(this);
     }
     componentDidMount() {
         this.getTodos();
@@ -23,44 +24,78 @@ class TodoList extends React.Component {
             .then(res => res.json())
             .then(todos => this.setState({ todos: todos }))
             .then(console.log(this.state.todos));
-                
+
     }
     addItem(newItem) {
         fetch(`http://localhost:3001/todos`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-           body :JSON.stringify(newItem)
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newItem)
+
         })
-        .then(() => this.getTodos())
+            .then(response => response.json())
+            .then(() => this.getTodos()
+
+            )
         //this.setState({ todos: [...this.state.todos, newItem] })
         //return response.json();
         //console.log(this.state.todos);
     }
+
     removeItem(id) {
         fetch(`http://localhost:3001/todos/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json'
-          }
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
         })
-          .then(() => this.getTodos());
-      }
+            .then(() => this.getTodos());
+    }
     /* removeItem(id) {
         this.setState({
             todos: this.state.todos.filter(t => t.id !== id)
         })
     } */
     updateItem(id, updateItem) {
-        const updateTodos = this.state.todos.map(todo => {
-            if (todo.id === id) {
+        console.log(updateItem)
+        const newTodo = { item: updateItem }
+        fetch(`http://localhost:3001/todos/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newTodo)
+        })
 
-                return { ...todo, item: updateItem }
-            }
-            return todo;
-        });
-        this.setState({ todos: updateTodos })
+            .then(response => response.json())
+            /* .then(json => {
+                console.log(json)
+                this.setState({
+                    todos :json
+                    //Body.json() is a function that reads the response stream to completion and parses 
+                    //the response as json. This operation may take take time, so instead of just returning the json, it returns another Promise . 
+                });
+            }) */
+            .then(() => this.getTodos())
+
+    }
+    updateDone(id, done) {
+        console.log(done);
+        const newDone = { isDone: !done };
+        fetch(`http://localhost:3001/todos/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newDone)
+        })
+            
+            .then(response => response.json())
+            .then(() => this.getTodos());
+
     }
     render() {
         const todos = this.state.todos.map(todoItem => {
@@ -68,8 +103,10 @@ class TodoList extends React.Component {
                 key={todoItem.id}
                 item={todoItem.item}
                 id={todoItem.id}
+                isDone={todoItem.isDone}
                 remove={this.removeItem}
                 update={this.updateItem}
+                updateDone={this.updateDone}
             />
         });
         return (
