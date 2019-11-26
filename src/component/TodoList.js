@@ -16,10 +16,12 @@ class TodoList extends React.Component {
         this.updateDone = this.updateDone.bind(this);
     }
     componentDidMount() {
+        
         this.getTodos();
     }
-
+    
     getTodos() {
+        
         fetch('http://localhost:3001/todos')
             .then(res => res.json())
             .then(todos => this.setState({ todos: todos }))
@@ -27,6 +29,7 @@ class TodoList extends React.Component {
 
     }
     addItem(newItem) {
+        console.log(newItem)
         fetch(`http://localhost:3001/todos`, {
             method: 'POST',
             headers: {

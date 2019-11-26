@@ -8,14 +8,14 @@ class TodoForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
+    handleChange(e) {
+        this.setState({ item: e.target.value })
+    }
     handleSubmit(e) {
         e.preventDefault();
         this.props.addItem({ ...this.state, id: uuid.v4(), isDone: false });
         console.log(this.state)
         this.setState({ item: '' })
-    }
-    handleChange(e) {
-        this.setState({ item: e.target.value })
     }
     render() {
         return (
