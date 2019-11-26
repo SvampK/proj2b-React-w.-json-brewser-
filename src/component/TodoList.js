@@ -14,6 +14,7 @@ class TodoList extends React.Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.updateItem = this.updateItem.bind(this);
         this.getTodos = this.getTodos.bind(this);
         this.updateDone = this.updateDone.bind(this);
@@ -29,6 +30,8 @@ class TodoList extends React.Component {
             .then(res => res.json())
             .then(todos => this.setState({ todos: todos }))
             .then(console.log(this.state.todos));
+=======
+>>>>>>> parent of b719f42... editItem completed
 =======
 >>>>>>> parent of b719f42... editItem completed
 =======
@@ -70,6 +73,7 @@ class TodoList extends React.Component {
         this.setState({
             todos: this.state.todos.filter(t => t.id !== id)
         })
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -136,6 +140,11 @@ class TodoList extends React.Component {
     render() {
         const todos = this.state.todos.map(todoItem => {
 >>>>>>> parent of b719f42... editItem completed
+=======
+    }
+    render() {
+        const todos = this.state.todos.map(todoItem => {
+>>>>>>> parent of b719f42... editItem completed
             return <TodoItem 
             key = {todoItem.id} 
             item = {todoItem.item}
@@ -143,6 +152,9 @@ class TodoList extends React.Component {
             id = {todoItem.id}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of b719f42... editItem completed
+=======
 >>>>>>> parent of b719f42... editItem completed
 =======
 >>>>>>> parent of b719f42... editItem completed
