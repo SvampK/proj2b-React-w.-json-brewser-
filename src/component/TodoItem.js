@@ -6,6 +6,7 @@ class TodoItem extends Component {
         this.handleRemove= this.handleRemove.bind(this);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.state = {
             isEditing: false,
             item: this.props.item,
@@ -18,10 +19,13 @@ class TodoItem extends Component {
         this.handleDone = this.handleDone.bind(this);
 =======
 >>>>>>> parent of b719f42... editItem completed
+=======
+>>>>>>> parent of b719f42... editItem completed
     }
     handleRemove(){
         this.props.remove(this.props.id);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
     toggleEdit() {
         
@@ -68,6 +72,9 @@ class TodoItem extends Component {
 
 =======
     render() {
+=======
+    render() {
+>>>>>>> parent of b719f42... editItem completed
         
         return (
             <div>
@@ -76,6 +83,9 @@ class TodoItem extends Component {
                 <li>{this.props.item}</li>
             </div>
         )
+<<<<<<< HEAD
+>>>>>>> parent of b719f42... editItem completed
+=======
 >>>>>>> parent of b719f42... editItem completed
     }
 }
