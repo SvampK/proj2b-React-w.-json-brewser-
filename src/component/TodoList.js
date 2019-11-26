@@ -1,16 +1,17 @@
 import React from 'react';
 import TodoForm from './TodoForm';
 import TodoItem from './TodoItem';
-
+//import uuid from 'uuid';
 
 class TodoList extends React.Component {
     constructor() {
         super();
         this.state = {
-            todos: []
+            todos: [ ]
         };
         this.addItem = this.addItem.bind(this);
         this.removeItem = this.removeItem.bind(this);
+<<<<<<< HEAD
         this.updateItem = this.updateItem.bind(this);
         this.getTodos = this.getTodos.bind(this);
         this.updateDone = this.updateDone.bind(this);
@@ -26,6 +27,8 @@ class TodoList extends React.Component {
             .then(res => res.json())
             .then(todos => this.setState({ todos: todos }))
             .then(console.log(this.state.todos));
+=======
+>>>>>>> parent of b719f42... editItem completed
 
     }
     addItem(newItem) {
@@ -61,6 +64,7 @@ class TodoList extends React.Component {
         this.setState({
             todos: this.state.todos.filter(t => t.id !== id)
         })
+<<<<<<< HEAD
     } */
     updateItem(id, updateItem) {
         console.log(updateItem)
@@ -110,8 +114,19 @@ class TodoList extends React.Component {
                 remove={this.removeItem}
                 update={this.updateItem}
                 updateDone={this.updateDone}
+=======
+    }
+    render() {
+        const todos = this.state.todos.map(todoItem => {
+            return <TodoItem 
+            key = {todoItem.id} 
+            item = {todoItem.item}
+            remove = {this.removeItem}
+            id = {todoItem.id}
+>>>>>>> parent of b719f42... editItem completed
             />
         });
+        //const wholeItem = this.state.todos
         return (
             <div>
                 <h1>What you wanna do?</h1>
