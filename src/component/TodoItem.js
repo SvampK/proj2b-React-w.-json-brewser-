@@ -5,11 +5,7 @@ class TodoItem extends Component {
         super(props);
         this.handleRemove= this.handleRemove.bind(this);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         this.state = {
             isEditing: false,
             item: this.props.item,
@@ -20,25 +16,12 @@ class TodoItem extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.handleDone = this.handleDone.bind(this);
-=======
->>>>>>> parent of b719f42... editItem completed
-=======
->>>>>>> parent of b719f42... editItem completed
-=======
->>>>>>> parent of b719f42... editItem completed
-=======
->>>>>>> parent of b719f42... editItem completed
-=======
->>>>>>> parent of b719f42... editItem completed
+
     }
     handleRemove(){
         this.props.remove(this.props.id);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     toggleEdit() {
         
         this.setState({ isEditing: !this.state.isEditing })
@@ -82,41 +65,15 @@ class TodoItem extends Component {
 
         return result;
 
-=======
-    render() {
-=======
-    render() {
->>>>>>> parent of b719f42... editItem completed
-=======
-    render() {
->>>>>>> parent of b719f42... editItem completed
-=======
-    render() {
->>>>>>> parent of b719f42... editItem completed
-=======
-    render() {
->>>>>>> parent of b719f42... editItem completed
         
-        return (
+        /* return (
             <div>
                 <button>Edit</button>
                 <button onClick={this.handleRemove}>X</button>
                 <li>{this.props.item}</li>
             </div>
-        )
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b719f42... editItem completed
-=======
->>>>>>> parent of b719f42... editItem completed
-=======
->>>>>>> parent of b719f42... editItem completed
-=======
->>>>>>> parent of b719f42... editItem completed
-=======
->>>>>>> parent of b719f42... editItem completed
+        ) */
+
     }
 }
 
